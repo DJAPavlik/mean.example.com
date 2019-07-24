@@ -1,0 +1,84 @@
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 127.0.0.1:18702         0.0.0.0:*               LISTEN      2477/code           
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      757/systemd-resolve 
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      763/cupsd           
+tcp        0      0 127.0.0.1:27017         0.0.0.0:*               LISTEN      877/mongod          
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      975/mysqld          
+tcp6       0      0 :::80                   :::*                    LISTEN      994/apache2         
+tcp6       0      0 ::1:631                 :::*                    LISTEN      763/cupsd           
+tcp6       0      0 :::3000                 :::*                    LISTEN      2896/node           
+tcp6       0      0 :::443                  :::*                    LISTEN      994/apache2         
+udp        0      0 127.0.0.53:53           0.0.0.0:*                           757/systemd-resolve 
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           1170/dhclient       
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           1071/dhclient       
+udp        0      0 0.0.0.0:631             0.0.0.0:*                           824/cups-browsed    
+udp        0      0 224.0.0.251:5353        0.0.0.0:*                           2124/chrome --type= 
+udp        0      0 224.0.0.251:5353        0.0.0.0:*                           2071/chrome         
+udp        0      0 224.0.0.251:5353        0.0.0.0:*                           2071/chrome         
+udp        0      0 0.0.0.0:5353            0.0.0.0:*                           785/avahi-daemon: r 
+udp        0      0 0.0.0.0:46345           0.0.0.0:*                           785/avahi-daemon: r 
+udp6       0      0 :::38667                :::*                                785/avahi-daemon: r 
+udp6       0      0 :::5353                 :::*                                785/avahi-daemon: r 
+raw6       0      0 :::58                   :::*                    7           809/NetworkManager  
+raw6       0      0 :::58                   :::*                    7           809/NetworkManager  
+Active UNIX domain sockets (only servers)
+Proto RefCnt Flags       Type       State         I-Node   PID/Program name     Path
+unix  2      [ ACC ]     SEQPACKET  LISTENING     14810    1/init               /run/udev/control
+unix  2      [ ACC ]     STREAM     LISTENING     32789    1457/systemd         /run/user/1000/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     24429    962/systemd          /run/user/121/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     32480    1486/gnome-session-  @/tmp/.ICE-unix/1486
+unix  2      [ ACC ]     STREAM     LISTENING     32793    1457/systemd         /run/user/1000/gnupg/S.gpg-agent.ssh
+unix  2      [ ACC ]     STREAM     LISTENING     24433    962/systemd          /run/user/121/gnupg/S.gpg-agent
+unix  2      [ ACC ]     STREAM     LISTENING     32794    1457/systemd         /run/user/1000/gnupg/S.gpg-agent.extra
+unix  2      [ ACC ]     STREAM     LISTENING     24434    962/systemd          /run/user/121/gnupg/S.gpg-agent.browser
+unix  2      [ ACC ]     STREAM     LISTENING     32795    1457/systemd         /run/user/1000/bus
+unix  2      [ ACC ]     STREAM     LISTENING     32796    1457/systemd         /run/user/1000/gnupg/S.dirmngr
+unix  2      [ ACC ]     STREAM     LISTENING     24435    962/systemd          /run/user/121/pulse/native
+unix  2      [ ACC ]     STREAM     LISTENING     14802    1/init               /run/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     32797    1457/systemd         /run/user/1000/gnupg/S.gpg-agent.browser
+unix  2      [ ACC ]     STREAM     LISTENING     24436    962/systemd          /run/user/121/bus
+unix  2      [ ACC ]     STREAM     LISTENING     32798    1457/systemd         /run/user/1000/gnupg/S.gpg-agent
+unix  2      [ ACC ]     STREAM     LISTENING     24437    962/systemd          /run/user/121/gnupg/S.dirmngr
+unix  2      [ ACC ]     STREAM     LISTENING     31270    1477/Xorg            /tmp/.X11-unix/X0
+unix  2      [ ACC ]     STREAM     LISTENING     24438    962/systemd          /run/user/121/gnupg/S.gpg-agent.extra
+unix  2      [ ACC ]     STREAM     LISTENING     28507    1471/gnome-keyring-  /run/user/1000/keyring/control
+unix  2      [ ACC ]     STREAM     LISTENING     24439    962/systemd          /run/user/121/gnupg/S.gpg-agent.ssh
+unix  2      [ ACC ]     STREAM     LISTENING     14808    1/init               /run/systemd/fsck.progress
+unix  2      [ ACC ]     STREAM     LISTENING     14818    1/init               /run/systemd/journal/stdout
+unix  2      [ ACC ]     STREAM     LISTENING     24290    882/gdm3             @/tmp/dbus-q78ApveU
+unix  2      [ ACC ]     STREAM     LISTENING     21152    767/irqbalance       @irqbalance767.sock
+unix  2      [ ACC ]     STREAM     LISTENING     31395    1471/gnome-keyring-  /run/user/1000/keyring/ssh
+unix  2      [ ACC ]     STREAM     LISTENING     27712    1001/gnome-shell     /run/user/121/wayland-0
+unix  2      [ ACC ]     STREAM     LISTENING     32513    1471/gnome-keyring-  /run/user/1000/keyring/pkcs11
+unix  2      [ ACC ]     STREAM     LISTENING     25430    983/gnome-session-b  /tmp/.ICE-unix/983
+unix  2      [ ACC ]     STREAM     LISTENING     25440    877/mongod           /tmp/mongodb-27017.sock
+unix  2      [ ACC ]     STREAM     LISTENING     27699    1038/Xwayland        /tmp/.X11-unix/X1024
+unix  2      [ ACC ]     STREAM     LISTENING     31481    1633/pulseaudio      /run/user/1000/pulse/native
+unix  2      [ ACC ]     STREAM     LISTENING     38614    2173/code --unity-l  /run/user/1000/vscode-94258af3-1.36.1-main.sock
+unix  2      [ ACC ]     STREAM     LISTENING     36603    2435/537.36 --node-  /run/user/1000/vscode-94258af3-1.36.1-shared.sock
+unix  2      [ ACC ]     STREAM     LISTENING     32405    1582/ssh-agent       /tmp/ssh-AQPvGhTTqJKM/agent.1486
+unix  2      [ ACC ]     STREAM     LISTENING     38834    2477/code            /run/user/1000/vscode-git-askpass-68d7f3c8608e76b64f4a35a64755cd5fbc61df0e.sock
+unix  2      [ ACC ]     STREAM     LISTENING     31269    1477/Xorg            @/tmp/.X11-unix/X0
+unix  2      [ ACC ]     STREAM     LISTENING     24289    882/gdm3             @/tmp/dbus-7815q9u3
+unix  2      [ ACC ]     STREAM     LISTENING     27385    809/NetworkManager   /run/NetworkManager/private-dhcp
+unix  2      [ ACC ]     STREAM     LISTENING     25548    975/mysqld           /var/run/mysqld/mysqld.sock
+unix  2      [ ACC ]     STREAM     LISTENING     28509    882/gdm3             @/tmp/dbus-fNvQvwDW
+unix  2      [ ACC ]     STREAM     LISTENING     28654    1648/ibus-daemon     @/tmp/dbus-q8oyTyJ2
+unix  2      [ ACC ]     STREAM     LISTENING     25429    983/gnome-session-b  @/tmp/.ICE-unix/983
+unix  2      [ ACC ]     STREAM     LISTENING     32481    1486/gnome-session-  /tmp/.ICE-unix/1486
+unix  2      [ ACC ]     STREAM     LISTENING     28510    882/gdm3             @/tmp/dbus-4VVpUAhu
+unix  2      [ ACC ]     STREAM     LISTENING     26239    1051/dbus-daemon     @/tmp/dbus-u6a0p4gK69
+unix  2      [ ACC ]     STREAM     LISTENING     35803    2071/chrome          /tmp/.com.google.Chrome.3CSaMh/SingletonSocket
+unix  2      [ ACC ]     STREAM     LISTENING     24287    882/gdm3             @/tmp/dbus-ujViRmxq
+unix  2      [ ACC ]     STREAM     LISTENING     25503    1116/ibus-daemon     @/tmp/dbus-HCPyi11C
+unix  2      [ ACC ]     STREAM     LISTENING     24288    882/gdm3             @/tmp/dbus-GEyIAbNb
+unix  2      [ ACC ]     STREAM     LISTENING     27698    1038/Xwayland        @/tmp/.X11-unix/X1024
+unix  2      [ ACC ]     STREAM     LISTENING     23264    1/init               /run/avahi-daemon/socket
+unix  2      [ ACC ]     STREAM     LISTENING     23266    1/init               /run/acpid.socket
+unix  2      [ ACC ]     STREAM     LISTENING     23268    1/init               /var/run/dbus/system_bus_socket
+unix  2      [ ACC ]     STREAM     LISTENING     23270    1/init               /run/uuidd/request
+unix  2      [ ACC ]     STREAM     LISTENING     20996    1/init               /run/snapd.socket
+unix  2      [ ACC ]     STREAM     LISTENING     20998    1/init               /run/snapd-snap.socket
+unix  2      [ ACC ]     STREAM     LISTENING     21000    1/init               /run/cups/cups.sock
+unix  2      [ ACC ]     STREAM     LISTENING     32442    1590/dbus-daemon     @/tmp/dbus-uFHZzpL0Ng
