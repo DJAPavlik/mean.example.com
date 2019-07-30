@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
     });
   });
 
-router.get('/:userId', function(req,res){
+  router.get('/:userId', function(req,res){
   
     var userId = req.params.userId;
      Users.findOne({'_id':userId}, function(err, user){
@@ -25,6 +25,7 @@ router.get('/:userId', function(req,res){
        return res.json({'success':true, 'user': user});
      });
    });
+
 
 router.post('/', function(req, res) {
     Users.create(new Users({

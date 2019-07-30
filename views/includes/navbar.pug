@@ -21,13 +21,11 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
             | Home 
             span.sr-only (current)
 
-        if (showLogin)
-          li.nav-item
-            a.nav-link(href='/auth#login') Login
-        else
-          li.nav-item
-            a.nav-link(href='/auth#register') Register
-          li.nav-item
-            a.nav-link(href='/auth/logout') Logout 
+        li.nav-item
+          a.nav-link(href='/auth#login') Login
+        li.nav-item
+          a.nav-link(href='/auth#register') Register
+        li.nav-item
+          a.nav-link(href='/auth/logout') Logout 
         li.nav-item
           a.nav-link(href='/users') Users

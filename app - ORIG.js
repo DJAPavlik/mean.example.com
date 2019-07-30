@@ -3,28 +3,34 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var mongoose = require('mongoose');
-var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 
-var Users = require('./models/users');
-
-var authRouter = require('./routes/auth');
-var apiUsersRouter = require('./routes/api/users');
-var apiAuthRouter = require('./routes/api/auth');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var config = require('./config.dev');
-
-//Test the file
-console.log(config);
+var apiUsersRouter = require('./routes/api/users');
 
 var app = express();
 
+var LocalStrategy = require('passport-local').Strategy;
+var authRouter = require('./routes/auth');
+
+var Users = require('./models/users');
+
+var config = require('./config.dev');
+
+var mongoose = require('mongoose');
+//~line 16
+var apiAuthRouter = require('./routes/api/auth');
+//~line 7 after mongoose
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var passport = require('passport');
+
+//Test the file
+// console.log(config);
+
 //Connect to MongoDB
 mongoose.connect(config.mongodb, { useNewUrlParser: true });
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,6 +42,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//~line 32 before routes
 app.use(require('express-session')({
   //Define the session store
   store: new MongoStore({
@@ -55,27 +62,12 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(Users.createStrategy());
-
-passport.serializeUser(function(user, done){
-  done(null,{
-    id: user._id,
-    username: user.username,
-    email: user.email,
-    first_name: user.first_name,
-    last_name: user.last_name
-  });
-});
-
-passport.deserializeUser(function(user, done){
-  done(null, user);
-});
+app.use('/auth', authRouter);
 
 app.use(function(req,res,next){
   res.locals.session = req.session;
   next();
 });
-
 //Session based access control
 app.use(function(req,res,next){
   //Uncomment the following line to allow access to everything.
@@ -120,14 +112,31 @@ app.use(function(req,res,next){
 
   //There is no session nor are there any whitelist matches. Deny access and
   //redirect the user to the login screen.
-  return res.redirect('/auth#login');
+  // MY JUNK MY JUNK
+//  return res.redirect('/auth#login');
+   return res.redirect('users/index');
 });
 
+passport.use(Users.createStrategy());
+
+passport.serializeUser(function(user, done){
+  done(null,{
+    id: user._id,
+    username: user.username,
+    email: user.email,
+    first_name: user.first_name,
+    last_name: user.last_name
+  });
+});
+
+passport.deserializeUser(function(user, done){
+  done(null, user);
+});
+//~line 74
+app.use('/api/auth', apiAuthRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/auth', authRouter);
 app.use('/api/users', apiUsersRouter);
-app.use('/api/auth', apiAuthRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -144,6 +153,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 module.exports = app;
