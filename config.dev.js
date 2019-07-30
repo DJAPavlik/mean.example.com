@@ -1,6 +1,6 @@
 var config = {};
+// config.mongodb = 'mongodb:/var/www/example.com/mean-cms';
 config.mongodb = 'mongodb://localhost/mean-cms';
-
 //Session configuration object
 config.session = {};
 
