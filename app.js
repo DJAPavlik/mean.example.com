@@ -11,19 +11,22 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var Users = require('./models/users');
 
-var authRouter = require('./routes/auth');
-var apiUsersRouter = require('./routes/api/users');
 var apiAuthRouter = require('./routes/api/auth');
+var apiUsersRouter = require('./routes/api/users');
+// var apiArticlesRouter = require('./routes/api/articles');
+var authRouter = require('./routes/auth');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var config = require('./config.dev');
-
-//Test the file
-console.log(config);
+// var articlesRouter = require('./routes/articles');
 
 var app = express();
 
-//Connect to MongoDB
+if(process.env.NODE_ENV==='production'){
+  var config = require('../config.prod');
+}else{
+  var config = require('./config.dev');
+}
+
 mongoose.connect(config.mongodb, { useNewUrlParser: true });
 
 // view engine setup
@@ -73,61 +76,57 @@ passport.deserializeUser(function(user, done){
 
 app.use(function(req,res,next){
   res.locals.session = req.session;
+
+  res.locals.showLogin = true;
+  if(req.session.passport){
+    if(req.session.passport.user){
+      res.locals.showLogin = false;
+    }
+  }
   next();
 });
 
-//Session based access control
+//session based access control
 app.use(function(req,res,next){
-  //Uncomment the following line to allow access to everything.
   //return next();
 
-  //Allow any endpoint that is an exact match. The server does not
-  //have access to the hash so /auth and /auth#xxx would bot be considered 
-  //exact matches.
   var whitelist = [
     '/',
-    '/auth'
+    '/auth',
+    // '/articles'
   ];
 
-  //req.url holds the current URL
-  //indexOf() returns the index of the matching array element
-  //-1, in this context means not found in the array
-  //so if NOT -1 means is found in the whitelist
-  //return next(); stops execution and grants access
-  if(whitelist.indexOf(req.url) !== -1){
+  if(whitelist.indexOf(req.url)!==-1){
     return next();
   }
 
-  //Allow access to dynamic end points
   var subs = [
     '/public/',
-    '/api/auth/'
+    '/api/auth/',
+    // '/articles/'
   ];
 
-  //The query string provides a partial URL match beginning
-  //at position 0. Both /api/auth/login and /api/auth/logout would would 
-  //be considered a match for /api/auth/
   for(var sub of subs){
-    if(req.url.substring(0, sub.length)===sub){
+    if(req.url.substring(0,sub.length)===sub){
       return next();
     }
   }
 
-  //There is an active user session, allow access to all endpoints.
   if(req.isAuthenticated()){
     return next();
   }
 
-  //There is no session nor are there any whitelist matches. Deny access and
-  //redirect the user to the login screen.
   return res.redirect('/auth#login');
+
 });
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/auth', authRouter);
-app.use('/api/users', apiUsersRouter);
 app.use('/api/auth', apiAuthRouter);
+app.use('/api/users', apiUsersRouter);
+// app.use('/api/articles', apiArticlesRouter);
+app.use('/auth', authRouter);
+app.use('/users/', usersRouter);
+// app.use('/articles/', articlesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -144,6 +143,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 module.exports = app;
