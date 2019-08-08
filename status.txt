@@ -1,0 +1,23 @@
+2019-08-01 - End of day - 
+
+	Loaded with the PM2 process code. 
+
+	Articles does not work.
+
+	Problem with the mean-cms users and articles collections.
+
+2019-08-01 - Copy of mean.example.com with port changed to 3330  
+	
+	Done to provide a test environment in which to finish the 
+	Articles code and resolve the table creation errors.
+
+	Database container changed to my-mean.
+
+2019-08-02 - Begin code comparison to Chad's sample code
+
+	12:00 PM - Working version - 
+		did use Chad's articles.apps.js for simplicity
+		of page layouts
+
+
+

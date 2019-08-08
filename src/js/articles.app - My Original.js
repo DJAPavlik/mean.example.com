@@ -1,9 +1,9 @@
-//  ../src/js/users.app.js
-var usersApp = (function() {
+//  ../src/js/articles.app.js
+var articlesApp = (function() {
 
-  function viewUsers(){
+  function viewArticles(){
 
-    let uri = `${window.location.origin}/api/users`;
+    let uri = `${window.location.origin}/api/articles`;
     let xhr = new XMLHttpRequest();
     xhr.open('GET', uri);
 
@@ -14,43 +14,44 @@ var usersApp = (function() {
 
     xhr.send();
 
-    // once the request for all users is back from the API
+    // once the request for all articles is back from the API
     //  set them up for display
     xhr.onload = function(){
       let app = document.getElementById('app');
       let data = JSON.parse(xhr.response);
-      let users = data.users;
+      let articles = data.articles;
       let table = '';
       let rows = '';
 
-      //Loop each user record into it's own HTML table row, each user should
-      //have a link a user view
-      for (let i=0; i<users.length; i++) {
+      //Loop each article record into it's own HTML table row, 
+      //  each article should
+      //  have a link to an article view
+      for (let i=0; i<articles.length; i++) {
         rows = rows + `<tr>
           <td>
-            <a href="#view-${users[i]['_id']}">${users[i]['last_name']}, ${users[i]['first_name']}</a>
+            <a href="#view-${articles[i]['title']}">${articles[i]['title']}</a>
           </td>
-          <td>${users[i]['username']}</td>
-          <td>${users[i]['email']}</td>
+          <td>${articles[i]['description']}</td>
+          <td>${articles[i]['created']}</td>
         </tr>`;
       }
 
-      //Create a users panel, add a table to the panel, inject the rows into the
-      //table
+      //Create an articles panel, add a table to the panel, 
+      // inject the rows into the table
       table = `<div class="card">
         <div class="card-header clearfix">
-          <h2 class="h3 float-left">Users</h2>
+          <h2 class="h3 float-left">Articles</h2>
           <div class="float-right">
-            <a href="#create" class="btn btn-primary">New User</a>
+            <a href="#create" class="btn btn-primary">New Article</a>
           </div>
         </div>
         <div class="table-responsive">
           <table class="table table-striped table-hover table-bordered">
             <thead>
               <tr>
-                <td>Name</td>
-                <td>Username</td>
-                <td>Email</td>
+                <td>Title</td>
+                <td>Description</td>
+                <td>Date Created</td>
               </tr>
             </thead>
             <tbody>${rows}</tbody>
@@ -61,62 +62,62 @@ var usersApp = (function() {
       //Append the HTML to the #app
       app.innerHTML = table;
     }  // end xhr.onload
-  }  // end viewUsers
+  }  // end viewArticles
 
-  function createUser(){
+  function createArticle(){
     var app = document.getElementById('app');
 
     var form =  `
         <div class="card">
           <div class="card-header clearfix">
-            <h2 class="h3 float-left">Create a New User</h2>
+            <h2 class="h3 float-left">Create a New Article</h2>
             <div class="float-right">
               <a href="#" class="btn btn-primary">Cancel</a>
             </div>
           </div>
           <div class="card-body">
-            <form id="createUser" class="card-body">
+            <form id="article" class="card-body">
               <div id="formMsg" class="alert alert-danger text-center">Your form has errors</div>
 
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label for="first_name">First Name</label>
-                  <input type="text" id="first_name" name="first_name" class="form-control" required>
+                  <label for="title">Title</label>
+                  <input type="text" id="Title" name="title" class="form-control" required>
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label for="last_name">Last Name</label>
-                  <input type="text" id="last_name" name="last_name" class="form-control" required>
+                  <label for="description">Description</label>
+                  <input type="text" id="description" name="description" class="form-control" required>
                 </div>
               </div>
 
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label for="username">Username</label>
-                  <input type="text" id="username" name="username" class="form-control" required>
+                  <label for="keywords">Keywords</label>
+                  <input type="text" id="keywords" name="keywords" class="form-control" required>
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" name="email" class="form-control" required>
+                  <label for="body">Body</label>
+                  <input type="text" id="body" name="body" class="form-control" required>
                 </div>
               </div>
 
               <div class="text-right">
-                <input type="submit" value="Submit" class="btn btn-lg btn-primary btn-sm-block">
-              </div>
+              <input type="submit" value="Submit" class="btn btn-lg btn-primary btn-sm-block">
+            </div>
             </form>
           </div>
         </div>
     `;
 
     app.innerHTML=form;
-    processRequest('createUser', '/api/users', 'POST');
-  }  // end createUser
+    processRequest('createArticle', '/api/articles', 'POST');
+  }  // end createArticle
 
   function viewUser(id){
 
-    let uri = `${window.location.origin}/api/users/${id}`;
+    let uri = `${window.location.origin}/api/articles/${id}`;
     let xhr = new XMLHttpRequest();
     xhr.open('GET', uri);
 
@@ -151,7 +152,7 @@ var usersApp = (function() {
 
   function editUser(id){
 
-    let uri = `${window.location.origin}/api/users/${id}`;
+    let uri = `${window.location.origin}/api/articles/${id}`;
     let xhr = new XMLHttpRequest();
     xhr.open('GET', uri);
 
@@ -216,13 +217,13 @@ var usersApp = (function() {
 
       app.innerHTML=form;
 
-      processRequest('editUser', '/api/users', 'PUT');
+      processRequest('editUser', '/api/articles', 'PUT');
     }
   }   // end editUser
 
   function deleteView(id){
 
-    let uri = `${window.location.origin}/api/users/${id}`;
+    let uri = `${window.location.origin}/api/articles/${id}`;
     let xhr = new XMLHttpRequest();
     xhr.open('GET', uri);
 
@@ -257,7 +258,7 @@ var usersApp = (function() {
 
             block content
               h1 Create an Article
-              form(method='post' action='/users/articles')
+              form(method='post' action='/articles/articles')
                 div
                   label(for='title') Title
                   input(type='text' name='title' id='title')
@@ -288,7 +289,7 @@ var usersApp = (function() {
             </a>
 
             <br><br><br>
-            <a class="btn text-muted" href="#users">cancel</a>
+            <a class="btn text-muted" href="#articles">cancel</a>
           </div>
 
         </div>
@@ -300,7 +301,7 @@ var usersApp = (function() {
 
   function deleteUser(id){
 
-    let uri = `${window.location.origin}/api/users/${id}`;
+    let uri = `${window.location.origin}/api/articles/${id}`;
     let xhr = new XMLHttpRequest();
     xhr.open('DELETE', uri);
 
@@ -383,12 +384,12 @@ var usersApp = (function() {
       let hashArray = hash.split('-');
 
       // junk junk - test point
-      console.log('   - In Users.app.js - load function ');
+      console.log('   - In NEW articles.app.js - load function ');
       console.log( hashArray[0]);
 
       switch(hashArray[0]){
         case '#create':
-          createUser();
+          createArticle();
           break;
 
         case '#view':
@@ -408,16 +409,16 @@ var usersApp = (function() {
             break;
 
         default:
-          viewUsers();
+          viewArticles();
           break;
       }
     }
   }  // end return
 
-})();  // end usersApp
+})();  // end articlesApp
 
-usersApp.load();
+articlesApp.load();
 
 window.addEventListener("hashchange", function(){
-  usersApp.load();
+  articlesApp.load();
 });

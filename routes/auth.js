@@ -1,5 +1,6 @@
-// ../routes/auth.js 
-
+/**
+ *  ../routes/auth.js
+ */
 
 var express = require('express');
 var router = express.Router();

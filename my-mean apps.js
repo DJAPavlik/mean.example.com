@@ -87,21 +87,6 @@ app.use(function(req,res,next){
   next();
 });
 
-//Set up CORS Instead of a WHITELIST
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Credentials', true);
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-  if ('OPTIONS' == req.method) {
-    res.send(200);
-  } else {
-    next();
-  }
-});
-
-
-/* JUNKJUNK - 
 //session based access control
 app.use(function(req,res,next){
   //return next();
@@ -138,7 +123,7 @@ app.use(function(req,res,next){
 
   return res.redirect('/auth#login');
 
-});   JUNKJUNK - end app.use */
+});
 
 app.use('/', indexRouter);
 app.use('/api/auth', apiAuthRouter);
